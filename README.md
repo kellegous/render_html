@@ -18,7 +18,7 @@ With the template, `index.tpl.html`, containing the following content:
 Executing `render_html` and passing in the parameters via `-v` flags.
 
 ```
-render_html -v build.version=1.2 -v build.time=$(date -u) index.tpl.html index.html
+render_html -v build.version=1.2 -v build.time="$(date -u)" index.tpl.html index.html
 ```
 
 This will render the template with the parameters passed on the command line and will write
