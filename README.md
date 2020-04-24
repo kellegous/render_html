@@ -38,3 +38,9 @@ the results into `index.html`, which will contains:
 ```
 go get github.com/kellegous/render_html
 ```
+
+### Templating Language
+
+The details of the templating language are described in the Go documentation: https://golang.org/pkg/html/template/
+
+Note that when multiple source template files are given, the first template becomes the template that will be render and all other templates are available to be included by their basename. The details of this behavior is also described in the Go documentation as part of the [ParseFiles](https://golang.org/pkg/html/template/#ParseFiles) method.
