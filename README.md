@@ -44,3 +44,29 @@ go get github.com/kellegous/render_html
 The details of the templating language are described in the Go documentation: https://golang.org/pkg/html/template/
 
 Note that when multiple source template files are given, the first template becomes the template that will be render and all other templates are available to be included by their basename. The details of this behavior is also described in the Go documentation as part of the [ParseFiles](https://golang.org/pkg/html/template/#ParseFiles) method.
+
+
+### Passing in parameters
+
+#### List Parameters
+
+To create a parameter that has a list of values, pass muliple instances of the `-v` flag with the same key. For example,
+
+```
+render_html -v build.tag=foo -v build.tag=bar tpl.html dst.html
+```
+
+#### Parameters without values
+
+It is valid to not pass a value with a parameter, `-v build.is_good`. A value of `""` will be inserted into that key.
+
+#### Parameter collisions
+
+It is an error to attempt to set a parameter key to be both a value and a map of values. Here's an example,
+
+```
+render_html -v foo.bar=33 -v foo=12 tmp.html dst.html
+```
+
+In this example, `foo` would need to hold the value `"33"` and also be a map that contains the key `bar`. Passing in keys that
+conflict will result in an error.
