@@ -30,6 +30,17 @@ func ExitWithErrorf(w io.Writer, f string, args ...interface{}) {
 	os.Exit(1)
 }
 
+// CreateFile ...
+func CreateFile(filename string) (*os.File, error) {
+	dir := filepath.Dir(filename)
+	if _, err := os.Stat(dir); err != nil {
+		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+			return nil, err
+		}
+	}
+	return os.Create(filename)
+}
+
 func main() {
 	var params pkg.Params
 
@@ -49,7 +60,7 @@ func main() {
 		ExitWithErrorf(os.Stderr, "Error in template: %s", err)
 	}
 
-	w, err := os.Create(dst)
+	w, err := CreateFile(dst)
 	if err != nil {
 		ExitWithErrorf(os.Stderr, "Unable to create file: %s", err)
 	}
