@@ -32,3 +32,9 @@ the results into `index.html`, which will contains:
 </body>
 </html>
 ```
+
+### Installing
+
+```
+go get github.com/kellegous/render_html
+```

@@ -15,7 +15,7 @@ import (
 // PrintUse ...
 func PrintUse(r io.Writer) {
 	if _, err := fmt.Fprintf(r,
-		"Use: %s [options] src... dst",
+		"Use: %s [-v key=val]... src... dst",
 		filepath.Base(os.Args[0])); err != nil {
 		log.Panic(err)
 	}
