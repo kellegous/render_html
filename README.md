@@ -1,4 +1,4 @@
-## render_html
+# render_html
 
 A command line utility that renders Go `template/html` templates from the command line.
 
